@@ -1,0 +1,114 @@
+:root {
+    font-size: 16px;
+    --colorPrimary: #f09d4f;
+    --colorWhite: #FFFFFF;
+    --colorBlack: #212121;
+    --fontSecundary: "Open Sans";
+    --fontPrimary: 'Fraunces';
+}
+
+/* fuentes estaticas*/
+@font-face {
+    font-family: 'Open Sans';
+    src: url(../font/OpenSans-Regular.ttf);
+    font-style: normal;
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'Fraunces';
+    src: url(../font/Fraunces_9pt-Bold.ttf);
+    font-style: normal;
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: 'Fraunces';
+    src: url(../font/Fraunces_9pt-Bold.ttf);
+    font-style: normal;
+    font-weight: 400;
+}
+
+
+
+/* estilos generales  */
+body {
+    margin: 0;
+    font-size: 1rem;
+    font-family: var(--fontSecundary);
+}
+
+img {
+    display: block;
+}
+
+.wrapper {
+    padding-inline: 1rem;
+    max-inline-size: 75rem;
+    margin-inline: auto;
+}
+
+/* header */
+
+.header {
+    background: var(--colorPrimary);
+    padding-block: 2rem 1rem;
+}
+
+.header_content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.menu {
+    background: transparent;
+    border: none;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.nav_link {
+    color: var(--colorBlack);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1rem;
+    font-family: var(--fontPrimary);
+    opacity: .7;
+}
+
+.nav_link[aria-current="page"] {
+    opacity: 1;
+}
+
+/* form */
+.formContent {
+    background: var(--colorPrimary);
+    padding-block: 1rem;
+    margin-block-end: 2rem;
+}
+
+.label,
+.select {
+    display: block;
+    margin-block-end: 1rem;
+}
+
+.select {
+    inline-size: 100%;
+    box-sizing: border-box;
+    border-radius: 1rem;
+    border: 1px solid var(--colorBlack);
+    padding: .5rem;
+}
+
+/* contenido */
+
+.ilustrator {
+    inline-size: 100%;
+}
