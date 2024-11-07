@@ -1,22 +1,49 @@
-// ------------------------- SELECTORES -------------------------
+// ------------------- SELECTORES -------------------
 const menuBtn = document.querySelector('#menu');
 const closeBtn = document.querySelector('#close');
-const nav = document.querySelector('.navContent');
+const selectCategorias = document.querySelector('#categorias');
 
-// ------------------------- EVENTOS -------------------------
+// ------------------- EVENTOS -------------------
 window.addEventListener('load', () => {
     menuBtn.addEventListener('click', handle);
     closeBtn.addEventListener('click', handle);
+
+    startApp();
 })
 
-// ------------------------- FUNCIONES -------------------------
+// ------------------- FUNCIONES -------------------
 
-// activa y desactiva menu desplegable
+// activa y desactiva menú dezplegable
 function handle(event) {
     event.preventDefault();
 
-    nav.classList.toggle('active');
+    const navContent = document.querySelector('.navContent');
+    navContent.classList.toggle('active');
 
-    // verifica el menu esta activado
-    document.querySelector('body').classList.toggle('overflow', nav.classList.contains('active'));
+    document.querySelector('body').classList.toggle('overflow', navContent.classList.contains('active'))
+}
+
+
+function startApp() {
+    getCategory()
+
+    // obtener categorias
+    function getCategory() {
+        const url = "https://www.themealdb.com/api/json/v1/1/categories.php";
+
+        fetch(url)
+            .then(result => result.json())
+            .then(result => showCategories(result.categories))
+    }
+
+    // muestra categorias en el html
+    function showCategories(categories = []) {
+        categories.forEach(category => {
+            const option = document.createElement('OPTION');
+            option.value = category.strCategory;
+            option.textContent = category.strCategory;
+
+            selectCategorias.appendChild(option)
+        })
+    }
 }
