@@ -15,22 +15,27 @@
 
             <button class="menu" id="menu" aria-label="Presiona para ver el menu"><img src="./img/icon-menu.svg" alt="icono de menu"></button>
             
+            <div class="navContent">
+                <nav class="nav">
+                    <a href="./" class="nav_link" aria-current="page" aria-label="Navegar a pagina recetas">Recetas</a>
+                    <a href="./favoritos.html" class="nav_link" aria-label="Navegar a pagina favoritos">Favoritos</a>
+                </nav>
+            </div>
         </div>
     </header>
 
+    <section class="formContent">
+        <form action="#" id="form" class="form" method="post">
+            <label class="label" for="recetas">Categorias:</label>
+            <select  name="" class="select" id="recetas" aria-label="Selecciona una categoria">
+                <option value="" selected >-- Selecciona --</option>
+            </select>
+        </form>
+    </section>
+
     <main class="main">
-        <div class="formContent">
-            <form action="#" id="form" class="form wrapper" method="post">
-                <label class="label" for="recetas">Categorias:</label>
-                <select  name="" class="select" id="recetas" aria-label="Selecciona una categoria">
-                    <option value="" selected >-- Selecciona --</option>
-                </select>
-            </form>
-        </div>
-        <section class="result">
-            <div class="result_content wrapper" id="result">
-                <img src="./img/ilustration.svg" class="ilustrator" alt="Ilustración" width="400" height="400">
-            </div>
+        <section class="result wrapper" id="result">
+            <img src="./img/ilustration.svg" class="ilustrator" alt="Ilustración" width="400" height="400">
         </section>
     </main>
 </body>
