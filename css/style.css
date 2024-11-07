@@ -36,6 +36,11 @@ body {
     margin: 0;
     font-size: 1rem;
     font-family: var(--fontSecundary);
+    position: relative;
+}
+
+.overflow {
+    overflow: hidden;
 }
 
 img {
@@ -62,17 +67,34 @@ img {
     gap: 2rem;
 }
 
-.menu {
+.buttonIcon {
     background: transparent;
     border: none;
+    cursor: pointer;
 }
 
 .navContent {
     display: none;
+    background: var(--colorPrimary);
+    position: absolute;
+    inline-size: 80%;
+    block-size: 100vh;
+    inset-block-start: 0;
+    inset-block-end: 0;
+    inset-inline-end: 0;
+    border-inline-start: 1px solid var(--colorBlack);
+
+    padding: 2rem 1rem;
+    box-sizing: border-box;
+}
+
+.navContent.active {
+    display: block;
 }
 
 .nav {
     display: flex;
+    flex-direction: column;
     align-items: center;
     gap: 2rem;
 }
@@ -88,6 +110,10 @@ img {
 
 .nav_link[aria-current="page"] {
     opacity: 1;
+}
+
+.navFixed {
+    display: none;
 }
 
 /* form */
@@ -126,11 +152,16 @@ img {
 
 /* media queries */
 @media (width >= 768px) {
-    .menu {
+    .buttonIcon#menu {
         display: none;
     }
 
     .navContent {
-        display: block;
+        display: none;
+    }
+
+    .navFixed {
+        display: flex;
+        flex-direction: row;
     }
 }
