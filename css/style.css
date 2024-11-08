@@ -45,6 +45,7 @@ body {
 
 img {
     display: block;
+    inline-size: 100%;
 }
 
 .wrapper {
@@ -53,8 +54,9 @@ img {
     margin-inline: auto;
 }
 
-/* header */
 
+
+/* header */
 .header {
     background: var(--colorPrimary);
     padding-block: 2rem 1rem;
@@ -116,6 +118,8 @@ img {
     display: none;
 }
 
+
+
 /* form */
 .formContent {
     background: var(--colorPrimary);
@@ -143,10 +147,65 @@ img {
     padding: .5rem;
 }
 
-/* contenido */
 
+
+/* contenido */
 .ilustrator {
     inline-size: 100%;
+    padding-inline: 2rem;
+    box-sizing: border-box;
+}
+
+.recipeContent {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(288px, 1fr));
+    gap: 2rem;
+}
+
+.title {
+    text-align: center;
+    color: var(--colorPrimary);
+    margin-block-end: 3rem;
+    font-weight: 700;
+    font-family: var(--fontPrimary);
+    position: relative;
+    padding-block-end: .25rem;
+
+    &::before {
+        content: '';
+        display: block;
+        inline-size: 60%;
+        max-inline-size: 500px;
+        block-size: 2px;
+        background: var(--colorPrimary);
+        position: absolute;
+        margin-block-start: 10px;
+        inset-block-end: 0;
+        inset-inline-start: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+.recipeCard {
+    background: var(--colorWhite);
+    padding: 1rem;
+    border-radius: 1rem;
+    box-shadow: 2px 2px 5px 1px rgb(196, 194, 194, .3),
+                -2px -2px 5px 1px rgb(196, 194, 194, .3);
+}
+
+.recipeBtn {
+    inline-size: 100%;
+    padding: .5rem;
+    background: var(--colorPrimary);
+    color: var(--colorWhite);
+    font-weight: 700;
+    font-size: 1rem;
+    text-transform: uppercase;
+    border-radius: 2rem;
+    border: none;
+    cursor: pointer;
+    box-shadow: inset -2px -2px 2px rgb(220, 120, 5);
 }
 
 
