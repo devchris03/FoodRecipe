@@ -54,6 +54,20 @@ function startApp() {
 
     // obtiene lista de platos por categoria
     function selectCategory(event) {
+        if(event.target.value === '') {
+            cleanHtml(result);
+
+            const imgEmpty = document.createElement('IMG');
+            imgEmpty.src = "../img/ilustration.svg";
+            imgEmpty.classList.add('ilustrator');
+            imgEmpty.width = "400";
+            imgEmpty.height = "400";
+
+            result.appendChild(imgEmpty);
+
+            return;
+        }
+
         const nameCategory = event.target.value;
         const url = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${nameCategory}`;
 
@@ -63,7 +77,10 @@ function startApp() {
     }
 
 
+    // muestra recetas en el html
     function showRecipesList(showRecipesList = []) {
+
+        cleanHtml(result)
 
         const title = document.createElement('H1');
         title.textContent = "Resultados encontrados"
@@ -99,5 +116,14 @@ function startApp() {
             recipeCard.append(recipeImg, recipeBody);
             recipeContent.appendChild(recipeCard);
         })
+    }
+
+
+    // limpia html
+    function cleanHtml(container) {
+
+        while(container.firstChild) {
+            container.removeChild(container.firstChild);
+        }
     }
 }
