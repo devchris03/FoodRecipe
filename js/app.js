@@ -165,22 +165,24 @@ function startApp() {
 
         // crea los botones para el modal
         const btnSave = document.createElement('BUTTON');
-        btnSave.textContent = "Guardar favorito";
-        btnSave.ariaLabel = "Guardar receta como favorita";
+        btnSave.textContent = existStorage(idMeal) ? "Eliminar favorito" : "Guardar favorito";
+        btnSave.ariaLabel = "Guardar favorito"
         btnSave.classList.add('btn');
         btnSave.onclick = () => {
 
             if(existStorage(idMeal)) {
                 
                 deleteFavorite(idMeal);
+                btnSave.textContent = "Guardar favorito";
                 return;
             }
-
+            
             addFavorite({
                 id: idMeal,
                 name: strMeal,
                 img: strMealThumb,
             })
+            btnSave.textContent = "Eliminar favorito";
         }
 
         const btnClose = document.createElement('BUTTON');
