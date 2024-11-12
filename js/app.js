@@ -171,6 +171,8 @@ function startApp() {
         btnSave.onclick = () => {
 
             if(existStorage(idMeal)) {
+                
+                deleteFavorite(idMeal);
                 return;
             }
 
@@ -195,13 +197,23 @@ function startApp() {
 
     // ------------ LOCAL STORAGE ------------
 
-    
+
     function addFavorite(recipe) {
         // obtenemos datos del localStorage
         const favorite = JSON.parse(localStorage.getItem('favoritos')) ?? [];
-
+        
         // Agregamos elementos al localStorage
         localStorage.setItem('favoritos', JSON.stringify([...favorite, recipe]));
+    }
+    
+    
+    function deleteFavorite(id) {
+        // obtenemos datos del localStorage
+        const favorite = JSON.parse(localStorage.getItem('favoritos')) ?? [];
+
+        // filtramos elementos
+        const newList = favorite.filter(fav => fav.id !== id);
+        localStorage.setItem('favoritos', JSON.stringify(newList));
     }
 
 
