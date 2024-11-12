@@ -31,6 +31,9 @@ function startApp() {
     const modal = document.querySelector('#modal');
     const closeModal = document.querySelector('#closeModal');
     closeModal.addEventListener('click', handleModal)
+
+    const closeNotification = document.querySelector('#closeNotification');
+    closeNotification.addEventListener('click', handleNotification)
     
     getCategories()
 
@@ -174,6 +177,7 @@ function startApp() {
                 
                 deleteFavorite(idMeal);
                 btnSave.textContent = "Guardar favorito";
+                showNotification("Agregado correctamente");
                 return;
             }
             
@@ -183,6 +187,7 @@ function startApp() {
                 img: strMealThumb,
             })
             btnSave.textContent = "Eliminar favorito";
+            showNotification("Eliminado correctamente");
         }
 
         const btnClose = document.createElement('BUTTON');
@@ -225,6 +230,19 @@ function startApp() {
 
         // verificamos si existe
         return favorite.some(fav => fav.id === id);
+    }
+
+
+    function showNotification(msg) {
+        const bodyNotification = document.querySelector('.notification_body');
+        bodyNotification.textContent = msg;
+        
+        handleNotification();
+    }
+    
+    function handleNotification() {
+        const notification = document.querySelector('#notification');
+        notification.classList.toggle('active');
     }
 
 
