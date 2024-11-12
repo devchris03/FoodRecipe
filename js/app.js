@@ -169,6 +169,11 @@ function startApp() {
         btnSave.ariaLabel = "Guardar receta como favorita";
         btnSave.classList.add('btn');
         btnSave.onclick = () => {
+
+            if(existStorage(idMeal)) {
+                return;
+            }
+
             addFavorite({
                 id: idMeal,
                 name: strMeal,
@@ -188,13 +193,24 @@ function startApp() {
     }
 
 
-    // localStorage
+    // ------------ LOCAL STORAGE ------------
+
+    
     function addFavorite(recipe) {
         // obtenemos datos del localStorage
         const favorite = JSON.parse(localStorage.getItem('favoritos')) ?? [];
 
         // Agregamos elementos al localStorage
         localStorage.setItem('favoritos', JSON.stringify([...favorite, recipe]));
+    }
+
+
+    function existStorage(id) {
+        // obtenemos datos del localStorage
+        const favorite = JSON.parse(localStorage.getItem('favoritos')) ?? [];
+
+        // verificamos si existe
+        return favorite.some(fav => fav.id === id);
     }
 
 
