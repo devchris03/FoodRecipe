@@ -168,6 +168,13 @@ function startApp() {
         btnSave.textContent = "Guardar favorito";
         btnSave.ariaLabel = "Guardar receta como favorita";
         btnSave.classList.add('btn');
+        btnSave.onclick = () => {
+            addFavorite({
+                id: idMeal,
+                name: strMeal,
+                img: strMealThumb,
+            })
+        }
 
         const btnClose = document.createElement('BUTTON');
         btnClose.textContent = "Cerrar";
@@ -178,6 +185,16 @@ function startApp() {
         modalButtons.append(btnSave, btnClose);
 
         handleModal();
+    }
+
+
+    // localStorage
+    function addFavorite(recipe) {
+        // obtenemos datos del localStorage
+        const favorite = JSON.parse(localStorage.getItem('favoritos')) ?? [];
+
+        // Agregamos elementos al localStorage
+        localStorage.setItem('favoritos', JSON.stringify([...favorite, recipe]));
     }
 
 
