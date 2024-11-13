@@ -26,7 +26,18 @@ function handle(event) {
 function startApp() {
 
     const select = document.querySelector('#categorias');
-    select.addEventListener('change', selecCategory);
+    if(select) {
+        // Si existe, ejecuta el evento
+        select.addEventListener('change', selecCategory);
+
+        getCategories()
+    }
+
+    const favoritoList = document.querySelector('.favorito');
+    if(favoritoList) {
+        getFavorites()
+    }
+
 
     const modal = document.querySelector('#modal');
     const closeModal = document.querySelector('#closeModal');
@@ -34,8 +45,6 @@ function startApp() {
 
     const closeNotification = document.querySelector('#closeNotification');
     closeNotification.addEventListener('click', handleNotification)
-    
-    getCategories()
 
     // obtener categorias
     function getCategories() {
@@ -91,7 +100,7 @@ function startApp() {
 
         const title = document.createElement('H1');
         title.classList.add('title');
-        title.textContent = "Resultados encontrados";
+        title.textContent = "Resultados";
 
         result.append(title, recipeContent)
 
@@ -103,16 +112,16 @@ function startApp() {
             recipeCard.classList.add('recipeCard');
 
             const recipeImg = document.createElement('IMG');
-            recipeImg.src = strMealThumb;
-            recipeImg.alt = `Imagen referencial del plato ${strMeal}`;
+            recipeImg.src = strMealThumb ?? meal.img;
+            recipeImg.alt = `Imagen referencial del plato ${strMeal ?? meal.name} `;
 
             const recipeName = document.createElement('H2');
-            recipeName.textContent = strMeal;
+            recipeName.textContent = strMeal ?? meal.name;
 
             const recipeBtn = document.createElement('BUTTON');
             recipeBtn.classList.add('btn');
             recipeBtn.textContent = 'Ver receta';
-            recipeBtn.onclick = () => selectRecipe(idMeal);
+            recipeBtn.onclick = () => selectRecipe(idMeal ?? meal.id);
 
             recipeCard.append(recipeImg, recipeName, recipeBtn);
             recipeContent.appendChild(recipeCard)
@@ -177,7 +186,7 @@ function startApp() {
                 
                 deleteFavorite(idMeal);
                 btnSave.textContent = "Guardar favorito";
-                showNotification("Agregado correctamente");
+                showNotification("Eliminado correctamente");
                 return;
             }
             
@@ -187,7 +196,7 @@ function startApp() {
                 img: strMealThumb,
             })
             btnSave.textContent = "Eliminar favorito";
-            showNotification("Eliminado correctamente");
+            showNotification("Guardado correctamente");
         }
 
         const btnClose = document.createElement('BUTTON');
@@ -242,7 +251,11 @@ function startApp() {
     
     function handleNotification() {
         const notification = document.querySelector('#notification');
-        notification.classList.toggle('active');
+        notification.classList.add('active')
+        
+        setTimeout(() => {
+            notification.classList.remove('active')
+        }, 3000)
     }
 
 
@@ -250,6 +263,26 @@ function startApp() {
     function handleModal() {
         modal.classList.toggle('active');
         document.querySelector('body').classList.toggle('overflow', modal.classList.contains('active'))
+    }
+
+
+    // --------------------- FAVORITOS ---------------------
+    // obtener favoritos
+    function getFavorites() {
+        const favorite = JSON.parse(localStorage.getItem('favoritos')) ?? [];
+        console.log(favorite.length)
+        console.log(favorite)
+        clearContainer(result);
+
+        if(favorite.length) {
+            showMeal(favorite)
+            return;
+        }
+
+        const title = document.createElement('H1');
+        title.textContent = "No hay favoritos aún";
+        title.classList.add('title');
+        result.appendChild(title);
     }
 
 

@@ -105,6 +105,7 @@ img {
     inset-block-end: 0;
     inset-inline-end: 0;
     border-inline-start: 1px solid var(--colorBlack);
+    z-index: 1;
 
     padding: 2rem 1rem;
     box-sizing: border-box;
@@ -283,14 +284,13 @@ img {
     max-inline-size: 25rem;
     box-sizing: border-box;
     opacity: 0;
-    z-index: 1;
-    display: none;
-    transition: opacity .3s;
+    transition: opacity .9s, visibility .9s;
+    visibility: hidden;
 }
 
 .notification.active {
     opacity: 1;
-    display: block;
+    visibility: visible;
 }
 
 .notification_content {
